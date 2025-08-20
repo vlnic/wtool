@@ -18,7 +18,7 @@ defmodule WtoolWeb.Router do
   end
 
   scope "/", WtoolWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :home
   end
@@ -76,5 +76,9 @@ defmodule WtoolWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
+  end
+
+  scope "/api/v1", WtoolWeb do
+    post "/external/callback", EventController, :handle
   end
 end
