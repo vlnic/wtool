@@ -10,7 +10,6 @@ defmodule Wtool.Projects.Profile do
     field :data, :map, default: %{}
     field :profile_link, :string, default: nil
 
-    belongs_to :project, Wtool.Project
     belongs_to :teammate, Teammate
 
     timestamps()
